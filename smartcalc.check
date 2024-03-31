@@ -1,0 +1,293 @@
+#include <stdio.h>
+#include <string.h>
+
+#include "smartcalc.h"
+
+#define LEN 256
+
+////////////// tests for get_rpn() function //////////////
+
+#test name_test1
+char *str = "1.5*2";
+char *str_goal = "1.5 2 * ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double result, goal = 1.5 * 2;
+error = calculate(str, 0, &result);
+ck_assert_int_eq(error, 0);
+ck_assert_double_eq(result, goal);
+
+#test name_test2
+char *str = "0";
+char *str_goal = "0 ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double result, goal = 0;
+error = calculate(str, 0, &result);
+ck_assert_int_eq(error, 0);
+ck_assert_double_eq(result, goal);
+
+#test name_test3
+char *str = "cos(2*1)";
+char *str_goal = "2 1 * cos ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double result, goal = cos(2 * 1);
+error = calculate(str, 0, &result);
+ck_assert_int_eq(error, 0);
+ck_assert_double_eq(result, goal);
+
+#test name_test4
+char *str = "+2*1*sin(cos(25*x))";
+char *str_goal = "2 1 * 25 x * cos sin * ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double x_1 = 0, x_2 = 3.14 / 2;
+double result_1, goal_1 = +2 * 1 * sin(cos(25 * x_1));
+double result_2, goal_2 = +2 * 1 * sin(cos(25 * x_2));
+
+int error_1 = calculate(str, x_1, &result_1);
+ck_assert_int_eq(error_1, 0);
+ck_assert_double_eq(result_1, goal_1);
+
+int error_2 = calculate(str, x_2, &result_2);
+ck_assert_int_eq(error_2, 0);
+ck_assert_double_eq(result_2, goal_2);
+
+#test name_test5
+char *str = "002*1*sin(cos(25*x))";
+char *str_goal = "002 1 * 25 x * cos sin * ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double x_1 = 0, x_2 = 3.14 / 2;
+double result_1, goal_1 = 002 * 1 * sin(cos(25 * x_1));
+double result_2, goal_2 = 002 * 1 * sin(cos(25 * x_2));
+
+int error_1 = calculate(str, x_1, &result_1);
+ck_assert_int_eq(error_1, 0);
+ck_assert_double_eq(result_1, goal_1);
+
+int error_2 = calculate(str, x_2, &result_2);
+ck_assert_int_eq(error_2, 0);
+ck_assert_double_eq(result_2, goal_2);
+
+#test name_test6
+char *str = "ln(2*x*1)";
+char *str_goal = "2 x * 1 * ln ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double x_1 = 0, x_2 = 3.14 / 2;
+double result_1, goal_1 = log(2 * x_1 * 1);
+double result_2, goal_2 = log(2 * x_2 * 1);
+
+int error_1 = calculate(str, x_1, &result_1);
+ck_assert_int_eq(error_1, 0);
+ck_assert_double_eq(result_1, goal_1);
+
+int error_2 = calculate(str, x_2, &result_2);
+ck_assert_int_eq(error_2, 0);
+ck_assert_double_eq(result_2, goal_2);
+
+#test name_test7
+char *str = "sqrt(-2.2*x*(-1))";
+char *str_goal = "2.2 ! x * 1 ! * sqrt ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double x_1 = 0, x_2 = 3.14 / 2, x_3 = -10;
+double result_1, goal_1 = sqrt(-2.2 * x_1 * (-1));
+double result_2, goal_2 = sqrt(-2.2 * x_2 * (-1));
+double result_3, goal_3 = sqrt(-2.2 * x_3 * (-1));
+
+int error_1 = calculate(str, x_1, &result_1);
+ck_assert_int_eq(error_1, 0);
+ck_assert_double_eq(result_1, goal_1);
+
+int error_2 = calculate(str, x_2, &result_2);
+ck_assert_int_eq(error_2, 0);
+ck_assert_double_eq(result_2, goal_2);
+
+int error_3 = calculate(str, x_3, &result_3);
+ck_assert_int_eq(error_3, 0);
+ck_assert_double_nan(result_3);
+ck_assert_double_nan(goal_3);
+
+#test name_test8
+char *str = "0.5+ln(-2*x*(-1.9))";
+char *str_goal = "0.5 2 ! x * 1.9 ! * ln + ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double x_1 = 0, x_2 = 3.14 / 2;
+double result_1, goal_1 = 0.5 + log(-2 * x_1 * (-1.9));
+double result_2, goal_2 = 0.5 + log(-2 * x_2 * (-1.9));
+
+int error_1 = calculate(str, x_1, &result_1);
+ck_assert_int_eq(error_1, 0);
+ck_assert_double_eq(result_1, goal_1);
+
+int error_2 = calculate(str, x_2, &result_2);
+ck_assert_int_eq(error_2, 0);
+ck_assert_double_eq(result_2, goal_2);
+
+#test name_test9
+char *str = "-2mod3";
+char *str_goal = "2 ! 3 mod ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double result, goal = fmod(-2, 3);
+error = calculate(str, 0, &result);
+ck_assert_int_eq(error, 0);
+ck_assert_double_eq(result, goal);
+
+#test name_test10
+char *str = "2+cos(sin(25)mod(sin(cos(3*x))))";
+char *str_goal = "2 25 sin 3 x * cos sin mod cos + ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double x_1 = 0, x_2 = 3.14 / 2;
+double result_1, goal_1 = 2 + cos(fmod(sin(25), (sin(cos(3 * x_1)))));
+double result_2, goal_2 = 2 + cos(fmod(sin(25), (sin(cos(3 * x_2)))));
+
+int error_1 = calculate(str, x_1, &result_1);
+ck_assert_int_eq(error_1, 0);
+ck_assert_double_eq(result_1, goal_1);
+
+int error_2 = calculate(str, x_2, &result_2);
+ck_assert_int_eq(error_2, 0);
+ck_assert_double_eq(result_2, goal_2);
+
+#test name_test11
+char *str = "-3^(-2)";
+char *str_goal = "3 ! 2 ! ^ ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double result, goal = pow(-3, -2);
+error = calculate(str, 0, &result);
+ck_assert_int_eq(error, 0);
+ck_assert_double_eq(result, goal);
+
+#test name_test12
+char *str = " .123     *  5x    ";
+char *str_goal = ".123 5x * ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double x_1 = 0, x_2 = 3.14 / 2;
+double result_1, goal_1 = .123 * 5 * x_1;
+double result_2, goal_2 = .123 * 5 * x_2;
+
+int error_1 = calculate(str, x_1, &result_1);
+ck_assert_int_eq(error_1, 0);
+ck_assert_double_eq(result_1, goal_1);
+
+int error_2 = calculate(str, x_2, &result_2);
+ck_assert_int_eq(error_2, 0);
+ck_assert_double_eq(result_2, goal_2);
+
+#test name_test13
+char *str = "(100/x)";
+char *str_goal = "100 x / ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double x_1 = 0, x_2 = 3.14 / 2;
+double result_1;
+double result_2, goal_2 = 100 / x_2;
+
+int error_1 = calculate(str, x_1, &result_1);
+ck_assert_int_eq(error_1, 1);
+
+int error_2 = calculate(str, x_2, &result_2);
+ck_assert_int_eq(error_2, 0);
+ck_assert_double_eq(result_2, goal_2);
+
+#test name_test14
+char *str = "2^3^2";
+char *str_goal = "2 3 2 ^ ^ ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double result, goal = pow(2, pow(3, 2));
+error = calculate(str, 0, &result);
+ck_assert_int_eq(error, 0);
+ck_assert_double_eq(result, goal);
+
+#test name_test15
+char *str = "2*cos(2)*.2";
+char *str_goal = "2 2 cos * .2 * ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double result, goal = 2 * cos(2) * .2;
+error = calculate(str, 0, &result);
+ck_assert_int_eq(error, 0);
+ck_assert_double_eq(result, goal);
+
+#test name_test16
+char *str = "1e6-1e4";
+char *str_goal = "1e6 1e4 - ";
+char str_rpn[LEN + 1];
+
+int error = get_rpn(str, str_rpn);
+ck_assert_int_eq(error, 0);
+ck_assert_str_eq(str_rpn, str_goal);
+
+double result, goal = 1e6 - 1e4;
+error = calculate(str, 0, &result);
+ck_assert_int_eq(error, 0);
+ck_assert_double_eq(result, goal);

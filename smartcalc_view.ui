@@ -1,0 +1,1327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkWindow" id="window">
+    <property name="title">SmartCalc v1.0</property>
+    <property name="default-width">900</property>
+    <property name="default-height">600</property>
+    <property name="default-widget">button-equal</property>
+    <child>
+      <object class="GtkNotebook" id="notebook">
+        <child>
+          <object class="GtkBox" id="box-calc">
+            <property name="orientation">vertical</property>
+            <property name="margin-top">20</property>
+            <property name="margin-bottom">20</property>
+            <child>
+              <object class="GtkBox" id="box-entries">
+              <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkEntry" id="entry-calc-input">
+                    <property name="name">entry-calc-input</property>
+                    <property name="max-length">255</property>
+                    <property name="xalign">1</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="activates-default">1</property>
+                    <style>
+                      <class name="title-3"/>
+                      <class name="entry-calc-input"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry-calc-result">
+                    <property name="editable">false</property>
+                    <property name="xalign">1</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="can-focus">0</property>
+                    <style>
+                      <class name="title-1"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="box-calc-x">
+                    <child>
+                      <object class="GtkLabel" id="label-calc-x">
+                        <property name="label">x = </property>
+                        <property name="margin-start">25</property>
+                        <style>
+                          <class name="title-3"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry-calc-x">
+                        <property name="can-focus">TRUE</property>
+                        <property name="text">0</property>
+                        <property name="margin-end">20</property>
+                        <property name="activates-default">1</property>
+                        <property name="max-length">19</property>
+                        <property name="hexpand">1</property>
+                        <style>
+                          <class name="title-3"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkGrid" id="grid-calc">
+                <property name="row-spacing">7</property>
+                <property name="column-spacing">7</property>
+                <property name="margin-top">20</property>
+                <property name="margin-start">20</property>
+                <property name="margin-end">20</property>
+                <child>
+                  <object class="GtkButton" id="button-sin">
+                    <property name="label">sin</property>
+                    <property name="hexpand">1</property>
+                    <property name="can-focus">0</property>
+                    <property name="vexpand">true</property>
+                    <layout>
+                      <property name="row">0</property>
+                      <property name="column">0</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-asin">
+                    <property name="label">asin</property>
+                    <property name="hexpand">true</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">0</property>
+                      <property name="column">1</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-right-bracket">
+                    <property name="label">(</property>
+                    <property name="hexpand">true</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">0</property>
+                      <property name="column">2</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-left-bracket">
+                    <property name="label">)</property>
+                    <property name="hexpand">true</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">0</property>
+                      <property name="column">3</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-clear">
+                    <property name="label">AC</property>
+                    <property name="hexpand">true</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">0</property>
+                      <property name="column">4</property>
+                    </layout>
+                    <style>
+                      <class name="destructive-action"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-delete">
+                    <property name="label">DEL</property>
+                    <property name="hexpand">true</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">0</property>
+                      <property name="column">5</property>
+                    </layout>
+                    <style>
+                      <class name="destructive-action"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-cos">
+                    <property name="label">cos</property>
+                    <property name="can-focus">0</property>
+                    <property name="vexpand">true</property>
+                    <layout>
+                      <property name="row">1</property>
+                      <property name="column">0</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-acos">
+                    <property name="label">acos</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">1</property>
+                      <property name="column">1</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-e">
+                    <property name="label">e</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">1</property>
+                      <property name="column">2</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-pi">
+                    <property name="label">pi</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">1</property>
+                      <property name="column">3</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-x">
+                    <property name="label">x</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">1</property>
+                      <property name="column">4</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-divide">
+                    <property name="label">/</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">1</property>
+                      <property name="column">5</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-tan">
+                    <property name="label">tan</property>
+                    <property name="can-focus">0</property>
+                    <property name="vexpand">true</property>
+                    <layout>
+                      <property name="row">2</property>
+                      <property name="column">0</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-atan">
+                    <property name="label">atan</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">2</property>
+                      <property name="column">1</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-7">
+                    <property name="label">7</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">2</property>
+                      <property name="column">2</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-8">
+                    <property name="label">8</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">2</property>
+                      <property name="column">3</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-9">
+                    <property name="label">9</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">2</property>
+                      <property name="column">4</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-multiply">
+                    <property name="label">*</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">2</property>
+                      <property name="column">5</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-log">
+                    <property name="label">log</property>
+                    <property name="can-focus">0</property>
+                    <property name="vexpand">true</property>
+                    <layout>
+                      <property name="row">3</property>
+                      <property name="column">0</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-ln">
+                    <property name="label">ln</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">3</property>
+                      <property name="column">1</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-4">
+                    <property name="label">4</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">3</property>
+                      <property name="column">2</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-5">
+                    <property name="label">5</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">3</property>
+                      <property name="column">3</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-6">
+                    <property name="label">6</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">3</property>
+                      <property name="column">4</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-minus">
+                    <property name="label">-</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">3</property>
+                      <property name="column">5</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-sqrt">
+                    <property name="label">sqrt</property>
+                    <property name="can-focus">0</property>
+                    <property name="vexpand">true</property>
+                    <layout>
+                      <property name="row">4</property>
+                      <property name="column">0</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-power">
+                    <property name="label">^</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">4</property>
+                      <property name="column">1</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-1">
+                    <property name="label">1</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">4</property>
+                      <property name="column">2</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-2">
+                    <property name="label">2</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">4</property>
+                      <property name="column">3</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-3">
+                    <property name="label">3</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">4</property>
+                      <property name="column">4</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-plus">
+                    <property name="label">+</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">4</property>
+                      <property name="column">5</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-mod">
+                    <property name="label">mod</property>
+                    <property name="can-focus">0</property>
+                    <property name="vexpand">true</property>
+                    <layout>
+                      <property name="row">5</property>
+                      <property name="column">0</property>
+                    </layout>
+                    <style>
+                      <class name="osd"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-exp">
+                    <property name="label">exp</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">5</property>
+                      <property name="column">1</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-point">
+                    <property name="label">.</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">5</property>
+                      <property name="column">2</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-0">
+                    <property name="label">0</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">5</property>
+                      <property name="column">3</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-sign">
+                    <property name="label">+/-</property>
+                    <property name="can-focus">0</property>
+                    <layout>
+                      <property name="row">5</property>
+                      <property name="column">4</property>
+                    </layout>
+                    <style>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-equal">
+                    <property name="label">=</property>
+                    <property name="can-focus">1</property>
+                    <layout>
+                      <property name="row">5</property>
+                      <property name="column">5</property>
+                    </layout>
+                    <style>
+                      <class name="suggested-action"/>
+                      <class name="title-2"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="tab">
+          <object class="GtkLabel" id="tab1-label-calc">
+            <property name="label">Calculator</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="box-graph">
+            <child>
+
+              <object class="GtkDrawingArea" id="graph-area">
+                <property name="content_width">500</property>
+                <property name="content_height">400</property>
+                <property name="hexpand">1</property>
+                <property name="vexpand">1</property>
+              </object>
+
+            </child>
+
+            <child>
+              <object class="GtkBox" id="box-graph-entries">
+                <property name="orientation">vertical</property>
+                <property name="margin-bottom">20</property>
+                <child>
+                  <object class="GtkGrid" id="grid-settings">
+                  <property name="row-spacing">7</property>
+                  <property name="column-spacing">7</property>
+                  <property name="margin-top">20</property>
+                  <property name="margin-start">20</property>
+                  <property name="margin-end">20</property>
+                  <child>
+                    <object class="GtkLabel" id="label-graph-xmin">
+                      <property name="label">x min</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">0</property>
+                      </layout>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkEntry" id="entry-region-xmin">
+                      <property name="name">entry-region-xmin</property>
+                      <property name="text">-10</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">1</property>
+                      </layout>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkLabel" id="label-graph-xmax">
+                      <property name="label">x max</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">2</property>
+                      </layout>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkEntry" id="entry-region-xmax">
+                      <property name="name">entry-region-xmax</property>
+                      <property name="text">10</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">3</property>
+                      </layout>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkLabel" id="label-graph-ymin">
+                      <property name="label">y min</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">0</property>
+                      </layout>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkEntry" id="entry-region-ymin">
+                      <property name="name">entry-region-ymin</property>
+                      <property name="text">-10</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">1</property>
+                      </layout>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkLabel" id="label-graph-ymax">
+                      <property name="label">y max</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">2</property>
+                      </layout>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkEntry" id="entry-region-ymax">
+                      <property name="name">entry-region-ymax</property>
+                      <property name="text">10</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">3</property>
+                      </layout>
+                    </object>
+                  </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry-graph-input">
+                    <property name="name">entry-graph-input</property>
+                    <property name="max-length">255</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="margin-top">20</property>
+                    <property name="activates-default">1</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkGrid" id="grid-graph">
+                  <property name="row-spacing">7</property>
+                  <property name="column-spacing">7</property>
+                  <property name="margin-top">20</property>
+                  <property name="margin-start">20</property>
+                  <property name="margin-end">20</property>
+                  <child>
+                    <object class="GtkButton" id="graph-sin">
+                      <property name="name">graph</property>
+                      <property name="label">sin</property>
+                      <property name="hexpand">1</property>
+                      <property name="can-focus">0</property>
+                      <property name="vexpand">true</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">0</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-asin">
+                      <property name="name">graph</property>
+                      <property name="label">asin</property>
+                      <property name="hexpand">true</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">1</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-right-bracket">
+                      <property name="name">graph</property>
+                      <property name="label">(</property>
+                      <property name="hexpand">true</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">2</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-left-bracket">
+                      <property name="name">graph</property>
+                      <property name="label">)</property>
+                      <property name="hexpand">true</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">3</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-clear">
+                      <property name="name">graph</property>
+                      <property name="label">AC</property>
+                      <property name="hexpand">true</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">4</property>
+                      </layout>
+                      <style>
+                        <class name="destructive-action"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-delete">
+                      <property name="name">graph</property>
+                      <property name="label">DEL</property>
+                      <property name="hexpand">true</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">0</property>
+                        <property name="column">5</property>
+                      </layout>
+                      <style>
+                        <class name="destructive-action"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-cos">
+                      <property name="name">graph</property>
+                      <property name="label">cos</property>
+                      <property name="can-focus">0</property>
+                      <property name="vexpand">true</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">0</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-acos">
+                      <property name="name">graph</property>
+                      <property name="label">acos</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">1</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-e">
+                      <property name="name">graph</property>
+                      <property name="label">e</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">2</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-pi">
+                      <property name="name">graph</property>
+                      <property name="label">pi</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">3</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-x">
+                      <property name="name">graph</property>
+                      <property name="label">x</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">4</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-divide">
+                      <property name="name">graph</property>
+                      <property name="label">/</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">1</property>
+                        <property name="column">5</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-tan">
+                      <property name="name">graph</property>
+                      <property name="label">tan</property>
+                      <property name="can-focus">0</property>
+                      <property name="vexpand">true</property>
+                      <layout>
+                        <property name="row">2</property>
+                        <property name="column">0</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-atan">
+                      <property name="name">graph</property>
+                      <property name="label">atan</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">2</property>
+                        <property name="column">1</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-7">
+                      <property name="name">graph</property>
+                      <property name="label">7</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">2</property>
+                        <property name="column">2</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-8">
+                      <property name="name">graph</property>
+                      <property name="label">8</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">2</property>
+                        <property name="column">3</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-9">
+                      <property name="name">graph</property>
+                      <property name="label">9</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">2</property>
+                        <property name="column">4</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-multiply">
+                      <property name="name">graph</property>
+                      <property name="label">*</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">2</property>
+                        <property name="column">5</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-log">
+                      <property name="name">graph</property>
+                      <property name="label">log</property>
+                      <property name="can-focus">0</property>
+                      <property name="vexpand">true</property>
+                      <layout>
+                        <property name="row">3</property>
+                        <property name="column">0</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-ln">
+                      <property name="name">graph</property>
+                      <property name="label">ln</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">3</property>
+                        <property name="column">1</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-4">
+                      <property name="name">graph</property>
+                      <property name="label">4</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">3</property>
+                        <property name="column">2</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-5">
+                      <property name="name">graph</property>
+                      <property name="label">5</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">3</property>
+                        <property name="column">3</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-6">
+                      <property name="name">graph</property>
+                      <property name="label">6</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">3</property>
+                        <property name="column">4</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-minus">
+                      <property name="name">graph</property>
+                      <property name="label">-</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">3</property>
+                        <property name="column">5</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-sqrt">
+                      <property name="name">graph</property>
+                      <property name="label">sqrt</property>
+                      <property name="can-focus">0</property>
+                      <property name="vexpand">true</property>
+                      <layout>
+                        <property name="row">4</property>
+                        <property name="column">0</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-power">
+                      <property name="name">graph</property>
+                      <property name="label">^</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">4</property>
+                        <property name="column">1</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-1">
+                      <property name="name">graph</property>
+                      <property name="label">1</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">4</property>
+                        <property name="column">2</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-2">
+                      <property name="name">graph</property>
+                      <property name="label">2</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">4</property>
+                        <property name="column">3</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-3">
+                      <property name="name">graph</property>
+                      <property name="label">3</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">4</property>
+                        <property name="column">4</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-plus">
+                      <property name="name">graph</property>
+                      <property name="label">+</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">4</property>
+                        <property name="column">5</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-mod">
+                      <property name="name">graph</property>
+                      <property name="label">mod</property>
+                      <property name="can-focus">0</property>
+                      <property name="vexpand">true</property>
+                      <layout>
+                        <property name="row">5</property>
+                        <property name="column">0</property>
+                      </layout>
+                      <style>
+                        <class name="osd"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-exp">
+                      <property name="name">graph</property>
+                      <property name="label">exp</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">5</property>
+                        <property name="column">1</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-point">
+                      <property name="name">graph</property>
+                      <property name="label">.</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">5</property>
+                        <property name="column">2</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-0">
+                      <property name="name">graph</property>
+                      <property name="label">0</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">5</property>
+                        <property name="column">3</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-sign">
+                      <property name="name">graph</property>
+                      <property name="label">+/-</property>
+                      <property name="can-focus">0</property>
+                      <layout>
+                        <property name="row">5</property>
+                        <property name="column">4</property>
+                      </layout>
+                      <style>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  <child>
+                    <object class="GtkButton" id="graph-equal">
+                      <property name="name">graph</property>
+                      <property name="label">plot</property>
+                      <property name="can-focus">1</property>
+                      <layout>
+                        <property name="row">5</property>
+                        <property name="column">5</property>
+                      </layout>
+                      <style>
+                        <class name="suggested-action"/>
+                        <class name="title-2"/>
+                        <class name="circular"/>
+                      </style>
+                    </object>
+                  </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="tab">
+          <object class="GtkLabel" id="tab2-label-graph">
+            <property name="label">Graph</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
